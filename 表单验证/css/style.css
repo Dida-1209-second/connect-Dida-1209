@@ -1,0 +1,64 @@
+div,
+em,
+label,
+span,
+.msg{
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+}
+label,.msg,input,.msg i,span,b{
+	float: left;
+}
+input{
+	height: 20px;
+}
+span{
+	width: 100px;
+}
+.msg,
+b{
+	display: none;
+	margin: 0;
+}
+em,
+label span,
+.changImg,
+.ati,
+.err{
+	display: inline-block;
+}
+em{
+	width: 55px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	color: #fff;
+	background-color: #faba71;
+	margin: 1px;
+}
+.active{
+	background-color: #ee2d19;
+}
+.changImg,
+.ati,
+.err{
+	width: 40px;
+	height: 30px;
+	background: url(../img/changImg.png) no-repeat center center;
+}
+.ati{
+	background: url(../img/ati.png) no-repeat center center;
+}
+.err{
+	background: url(../img/err.png) no-repeat center center;
+}
+
+
+
+
+
+
+
+
+
