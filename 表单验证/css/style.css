@@ -17,7 +17,7 @@ span{
 	width: 100px;
 }
 .msg,
-b{
+#count{
 	display: none;
 	margin: 0;
 }
@@ -42,7 +42,8 @@ em{
 }
 .changImg,
 .ati,
-.err{
+.err,
+.ok{
 	width: 40px;
 	height: 30px;
 	background: url(../img/changImg.png) no-repeat center center;
@@ -53,7 +54,9 @@ em{
 .err{
 	background: url(../img/err.png) no-repeat center center;
 }
-
+.ok{
+	background: url(../img/ok.png) no-repeat center center;
+}
 
 
 
