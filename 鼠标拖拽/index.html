@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div class="link">
+			<a href="javascript:showDialog();">登录</a>
+		</div>
+		<div class="ui-mask" id="mask" onselectstart="return false"></div>
+		
+		<div class="ui-dialog" id="dialogMove" onselectstart="return false;">
+			<div class="ui-dialog-title" id="dialogDrag" onselectstart="return false;">
+				登录通信证
+				<a class="ui-dialog-closebutton" href="javascript:hideDialog();"></a>
+			</div>
+			<div class="ui-dialog-content">
+				<div class="ui-log-content">
+					<div class="ui-dialog-140 ui-dialog-pt15">
+						<input class="ui-dialog-input ui-dialog-input-username" type="input" value="手机/邮箱/用户名" />
+					</div>
+					<div class="ui-dialog-140">
+						<a href="#">忘记密码</a>
+					</div>
+					<div>
+						<a class="ui-dialog-submit" href="#">登录</a>
+					</div>
+					<div class="ui-dialog-140">
+						<a href="#">立即注册</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
