@@ -118,14 +118,56 @@
 			el.style.height=document.documentElement.clientHeight+'px';
 		}
 		
-		//Dialog实例化的方法
-		
+		//0、Dialog实例化的方法,鼠标按下
+		function Dialog(dragId,moveId){
+			var instace={};
+			
+			instace.dragElement=g(dragId);
+			instace.moveElement=g(moveId);
+			
+			instace.mouseOffsetLeft=0;
+			instace.mouseOffsetTop=0;
+			
+			instace.dragElement.addEventListener('mousedown',function(e){
+				var e=e||window.event;
+				
+				dialogInstace=instace;
+				instace.mouseOffsetLeft=e.pageX-instace.moveElement.offsetLeft;
+				instace.mouseOffsetTop=e.pageY-instace.moveElement.offsetTop;
+			
+				onMoveStartId=setInterval(onMoveStart,10);
+				return false;
+			})
+		}
 		//1、在页面侦听鼠标弹起事件
-		
+		document.onmouseup=function(e){
+			dialogInstace=false;
+			clearInterval(onMoveStartId);
+		}
 		//2、鼠标移动
+		document.onmousemove=function(e){
+			var e=e||window.event;
+			mousePos.x=e.clientX;
+			mousePos.y=e.clientY;	
+			
+			e.stopPropagation&&e.stopPropagation();
+			e.cancelBubble=true;
+			e=this.originalEvent;
+			e&&(e.preventDefault?e.preventDefault():e.returnValue=false);
 		
+			document.body.style.MozUserSelect='none';
+		}
 		//3、鼠标按下
-		
+		function onMoveStart(){
+			var instace=dialogInstace;
+			if(instace){
+				var maxX=document.documentElement.clientWidth-instace.moveElement.offsetWidth;
+				var maxY=document.documentElement.clientHeight-instace.moveElement.offsetHeight;
+			
+				instace.moveElement.style.left=Math.min(maxX,Math.max(mousePos.x-instace.mouseOffsetLeft),0);
+				instace.moveElement.style.Top=Math.min(maxX,Math.max(mousePos.y-instace.mouseOffsetTop),0);
+			}
+		}
 		//重新调整对话框的位置和遮罩，并且展现
 		function showDialog(){
 			g('dialogMove').style.display='block';
