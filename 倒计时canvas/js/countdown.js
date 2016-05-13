@@ -16,3 +16,24 @@ function render(cxt){
 	
 	renderDigit(0,0,parseInt(hours/10),cxt)
 }
+
+function renderDigit(x,y,num,cxt){
+	cxt.fillStyle="rgb(0,102,153)";
+	
+	for(var i=0;i<digit[num].length;i++)
+	for(var j=0;j<digit[num][i].length;j++)
+	if(digit[num][i][j]==1){
+		cxt.beginPath();
+		cxt.arc();
+		cxt.closePath();
+		
+		cxt.fill();
+	}
+	
+}
+
+
+
+
+
+
