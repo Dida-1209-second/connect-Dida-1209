@@ -1,3 +1,9 @@
+var WINDOW_WIDTH=1024;
+var WINDOW_HEIGHT=768;
+var RADIUS=8;
+var MARGIN_TOP=60;
+var MARGIN_LEFT=30;
+
 window.onload=function(){
 	
 	var canvas=document.getElementById('canvas');
@@ -14,7 +20,14 @@ function render(cxt){
 	var minutes=34;
 	var seconds=56;
 	
-	renderDigit(0,0,parseInt(hours/10),cxt)
+	renderDigit(MARGIN_LEFT,MARGIN_TOP,parseInt(hours/10),cxt);
+	renderDigit(MARGIN_LEFT+15*(RADIUS + 1),MARGIN_TOP,parseInt(hours%10),cxt);
+	renderDigit(MARGIN_LEFT+30*(RADIUS+1),MARGIN_TOP,10,cxt);
+	renderDigit(MARGIN_LEFT+39*(RADIUS +1),MARGIN_TOP,parseInt(minutes/10),cxt);
+	renderDigit(MARGIN_LEFT+54*(RADIUS+1),MARGIN_TOP,parseInt(minutes%10),cxt);
+	renderDigit(MARGIN_LEFT+69*(RADIUS+1),MARGIN_TOP,10,cxt);
+	renderDigit(MARGIN_LEFT+78*(RADIUS+1),MARGIN_TOP,parseInt(seconds/10),cxt);
+	renderDigit(MARGIN_LEFT+93*(RADIUS+1),MARGIN_TOP,parseInt(seconds%10),cxt);
 }
 
 function renderDigit(x,y,num,cxt){
