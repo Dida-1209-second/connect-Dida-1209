@@ -4,7 +4,7 @@ var RADIUS=8;
 var MARGIN_TOP=60;
 var MARGIN_LEFT=30;
 
-const endTime = new Date(2016,4,17,13,15,20);
+const endTime = new Date(2016,4,26,13,15,20);
 var curShowTimeSeconds=0;
 
 var balls=[];
@@ -13,7 +13,7 @@ const colors=["#fb656c","#fd2e33","#fdf12e","#d665fb","#fba565","#41fbf4","#65cf
 window.onload=function(){
 	
 	WINDOW_WIDTH=document.documentElement.clientWidth;
-	WINDOW_HEIGHT=document.documentElement.clientHeight;
+	WINDOW_HEIGHT=800;
 	
 	MARGIN_LEFT=Math.round(WINDOW_WIDTH/10);
 	RADIUS=Math.round(WINDOW_WIDTH*4/5/108)-1;
@@ -25,6 +25,10 @@ window.onload=function(){
 	
 	canvas.width=WINDOW_WIDTH;
 	canvas.height=WINDOW_HEIGHT;
+	
+	context.font="bold 40px Arial";
+	context.fillStyle="#058";
+	context.fillText("这可以是时钟，可以是倒计时，看心情",40,300);
 	
 	curShowTimeSeconds=getCurrentShowTimeSeconds();
 	setInterval(function(){
