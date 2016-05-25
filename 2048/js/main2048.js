@@ -19,7 +19,12 @@ function init(){
 			gridCell.css('top',getPosTop(i,j));
 			gridCell.css('left',getPosLeft(i,j));
 		}
-		
 	
+	for(var i=0;i<4;i++){
+		board[i]=new Array();
+		for(var j=0;j<4;j++)
+			board[i][j]=0;
+	}
+	updateBoardView();
 }
 
