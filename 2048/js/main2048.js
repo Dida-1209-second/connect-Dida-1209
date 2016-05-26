@@ -27,4 +27,8 @@ function init(){
 	}
 	updateBoardView();
 }
-
+function updateBoardView(){
+	$(".number-cell").remove();
+	for(var i=0;i<4;i++)
+	
+}
