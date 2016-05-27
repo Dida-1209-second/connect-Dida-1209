@@ -1,7 +1,10 @@
 var canvasWidth=800;
 var canvasHeight=canvasWidth;
+
 var isMouseDown=false;
 var lastLoc={x:0,y:0};
+var lastTimestamp=0;
+var lastLineWidth=-1;
 
 var canvas=document.getElementById('canvas');
 var context=canvas.getContext("2d");
@@ -14,7 +17,7 @@ canvas.onmousedown=function(e){
 	e.preventDefault();
 	isMouseDown=true;
 	lastLoc=windowToCanvas(e.clientX,e.clientY);
-	console.log(lastLoc.x+','+lastLoc.y);
+	lastTimestamp=new Date().getTime();
 }
 canvas.onmouseup=function(e){
 	e.preventDefault();
@@ -28,6 +31,11 @@ canvas.onmousemove=function(e){
 	e.preventDefault();
 	if(isMouseDown){
 		var curLoc=windowToCanvas(e.clientX,e.clientY);
+		var curTimestamp=new Date().getTime();
+		var s=calcDistance(curLoc,lastLoc);
+		var t=curTimestamp-lastTimestamp;
+		
+		var lineWidth=calcLineWidth(t,s);
 		
 		context.beginPath();
 		console.log(lastLoc.x+','+lastLoc.y);
@@ -35,10 +43,40 @@ canvas.onmousemove=function(e){
 		context.lineTo(curLoc.x,curLoc.y);
 		
 		context.strokeStyle="black";
+		context.lineWidth=lineWidth;
+		context.lineCap="round";
+		context.lineJoin="round";
 		context.stroke();
 		
 		lastLoc=curLoc;
+		lastTimestamp=curTimestamp;
 	}
+}
+
+var maxLineWidth=30;
+var minLineWidth=1;
+var maxStrokeV=10;
+var minStrokeV=0.1;
+
+function calcLineWidth(t,s){
+	var resultLineWidth;
+	var v=s/t;
+	
+	if(v<=minStrokeV)
+		resultLineWidth=maxLineWidth;
+	else if(v>=maxStrokeV)
+		resultLineWidth=minLineWidth;
+	else
+		resultLineWidth=maxLineWidth-(v-minStrokeV)/(maxLineWidth-minLineWidth)*(maxLineWidth-minLineWidth);
+		
+	if(lastLineWidth=-1)
+		return resultLineWidth;
+
+	return lastLineWidth*2/3+resultLineWidth*1/3;
+}
+
+function calcDistance(loc1,loc2){
+	return Math.sqrt((loc1.x-loc2.x)*(loc1.x-loc2.x)+(loc1.y-loc2.y)*(loc1.y-loc2.y));
 }
 
 function windowToCanvas(x,y){
