@@ -1,4 +1,4 @@
-var canvasWidth=800;
+var canvasWidth=Math.min(800,$(window).width()-20);
 var canvasHeight=canvasWidth;
 
 var strokeColor="black";
@@ -13,10 +13,19 @@ var context=canvas.getContext("2d");
 canvas.width=canvasWidth;
 canvas.height=canvasHeight;
 
+$("#controller").css("width",canvasWidth+"px");
+$(".color_btn").css("width",canvasWidth/12+"px");
+$(".color_btn").css("height",canvasWidth/12+"px");
+$(".op_btn").css("width",canvasWidth/6+"px");
+$(".op_btn").css("height",canvasWidth/12+"px");
+$(".op_btn").css("font-size",canvasWidth/16+"px");
+$(".op_btn").css("line-height",canvasWidth/12+"px");
+
 drawGrid();
 $("#clear_btn").click(
 	function(e){
 		context.clearRect(0,0,canvasWidth,canvasHeight);
+		drawGrid();
 	}
 )
 $(".color_btn").click(
@@ -27,24 +36,16 @@ $(".color_btn").click(
 	}
 )
 
-canvas.onmousedown=function(e){
-	e.preventDefault();
+function beginStroke(point){
 	isMouseDown=true;
-	lastLoc=windowToCanvas(e.clientX,e.clientY);
+	lastLoc=windowToCanvas(point.x,point.y);
 	lastTimestamp=new Date().getTime();
 }
-canvas.onmouseup=function(e){
-	e.preventDefault();
+function endStroke(){
 	isMouseDown=false;
 }
-canvas.onmouseout=function(e){
-	e.preventDefault();
-	isMouseDown=false;
-}
-canvas.onmousemove=function(e){
-	e.preventDefault();
-	if(isMouseDown){
-		var curLoc=windowToCanvas(e.clientX,e.clientY);
+function moveStroke(point){
+	var curLoc=windowToCanvas(point.x,point.y);
 		var curTimestamp=new Date().getTime();
 		var s=calcDistance(curLoc,lastLoc);
 		var t=curTimestamp-lastTimestamp;
@@ -64,8 +65,44 @@ canvas.onmousemove=function(e){
 		
 		lastLoc=curLoc;
 		lastTimestamp=curTimestamp;
+}
+
+canvas.onmousedown=function(e){
+	e.preventDefault();
+	beginStroke({x:e.clientX,y:e.clientY});
+}
+canvas.onmouseup=function(e){
+	e.preventDefault();
+	endStroke();
+}
+canvas.onmouseout=function(e){
+	e.preventDefault();
+	endStroke();
+}
+canvas.onmousemove=function(e){
+	e.preventDefault();
+	if(isMouseDown){
+		moveStroke({x:e.clientX,y:e.clientY});	
 	}
 }
+
+canvas.addEventListener("touchstart",function(e){
+	e.preventDefault();
+	touch=e.touches[0];
+	beginStroke({x:touch.pageX,y:touch.pageY});
+})
+canvas.addEventListener("touchmove",function(e){
+	e.preventDefault();
+	if(isMouseDown){
+		touch=e.touches[0];
+		moveStroke({x:touch.pageX,y:touch.pageY});	
+	}
+})
+canvas.addEventListener("touchend",function(e){
+	e.preventDefault();
+	endStroke();
+})
+
 
 var maxLineWidth=30;
 var minLineWidth=1;
