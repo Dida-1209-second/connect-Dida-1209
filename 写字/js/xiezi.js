@@ -1,6 +1,7 @@
 var canvasWidth=800;
 var canvasHeight=canvasWidth;
 
+var strokeColor="black";
 var isMouseDown=false;
 var lastLoc={x:0,y:0};
 var lastTimestamp=0;
@@ -13,6 +14,19 @@ canvas.width=canvasWidth;
 canvas.height=canvasHeight;
 
 drawGrid();
+$("#clear_btn").click(
+	function(e){
+		context.clearRect(0,0,canvasWidth,canvasHeight);
+	}
+)
+$(".color_btn").click(
+	function(e){
+		$(".color_btn").removeClass("color_btn_selected");
+		$(this).addClass("color_btn_selected");
+		strokeColor=$(this).css("background-color");
+	}
+)
+
 canvas.onmousedown=function(e){
 	e.preventDefault();
 	isMouseDown=true;
@@ -42,7 +56,7 @@ canvas.onmousemove=function(e){
 		context.moveTo(lastLoc.x,lastLoc.y);
 		context.lineTo(curLoc.x,curLoc.y);
 		
-		context.strokeStyle="black";
+		context.strokeStyle=strokeColor;
 		context.lineWidth=lineWidth;
 		context.lineCap="round";
 		context.lineJoin="round";
