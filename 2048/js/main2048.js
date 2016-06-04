@@ -244,3 +244,5 @@ function moveDown(){
     setTimeout("updateBoardView()",200);
     return true;
 }
+
+

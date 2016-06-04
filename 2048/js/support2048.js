@@ -6,7 +6,7 @@ function getPosLeft(i,j){
 	return 20+j*120;
 }
 function getNumberBackgroundColor(number){
-	switch(number){
+switch(number){
 		case 2:return '#eee4da';break;
 		case 4:return '#ede0c8';break;
 		case 8:return '#f2b179';break;
@@ -20,6 +20,7 @@ function getNumberBackgroundColor(number){
 		case 2048:return '#09c';break;
 		case 4096:return 'a6c';break;
 		case 8192:return '#93c';break;
+		
 	}
 	return 'black';
 }
