@@ -14,6 +14,20 @@ var bgPic= new Image();
 
 var ane;
 var fruit;
+var mom;
+var baby;
+var babyEye=[];
+var babyTail=[];
+var babyBody=[];
+var momTail=[];
+var momEye =[];
+var momBodyOra=[];
+var momBodyBlu=[];
+
+var mx;
+var my;
+
+var data;
 
 document.body.onload=game;
 function game(){
@@ -29,6 +43,8 @@ function init(){
 	can2=document.getElementById("canvas2");//background,ane,fruits
 	ctx2=can2.getContext('2d');
 	
+	can1.addEventListener('mousemove',onMouseMove,false);
+	
 	//背景图片绘制
 	bgPic.src="src/background.jpg";
 	
@@ -40,7 +56,49 @@ function init(){
 	
 	fruit=new fruitObj();
 	fruit.init();
-	//
+
+	mom=new momObj();
+	mom.init();
+	
+	baby=new babyObj();
+	baby.init();
+	
+	for(var i=0;i<8;i++){
+		babyTail[i]=new Image();
+		babyTail[i].src="src/babyTail"+i+".png";
+	}
+	
+	for(var i=0;i<2;i++){
+		babyEye[i]=new Image();
+		babyEye[i].src="src/babyEye"+i+".png";
+	}
+	
+	for(var i=0;i<20;i++){
+		babyBody[i]=new Image();
+		babyBody[i].src="src/babyFade"+i+".png";
+	}
+	
+	for(var i=0;i<8;i++){
+		momTail[i]=new Image();
+		momTail[i].src="src/bigTail"+i+".png";
+	}
+	
+	for(var i=0;i<2;i++){
+		momEye[i]=new Image();
+		momEye[i].src="src/bigEye"+i+".png";
+	}
+	
+	for(var i=0;i<8;i++){
+		momBodyOra[i]=new Image();
+		momBodyBlu[i]=new Image();
+		momBodyOra[i].src="src/bigSwim"+i+".png";
+		momBodyBlu[i].src="src/bigSwimBlue"+i+".png";
+	}
+	
+	mx=canWidth*0.5;
+	my=canHeight*0.5;
+	
+	data=new dataObj();
 }
 
 function gameloop(){
@@ -49,9 +107,25 @@ function gameloop(){
 	var now=Date.now();
 	deltaTime=now-lastTime;
 	lastTime=now;
+	if(deltaTime>40)deltaTime=40;
 
 	drawBackground();
 	ane.draw();
 	fruitMonitor();
 	fruit.draw();
+	
+	ctx1.clearRect(0,0,canWidth,canHeight);
+	mom.draw();
+	momFruitCollision();
+
+	baby.draw();
+	momBabyCollision();
+	
+	data.draw();
+}
+function onMouseMove(e){
+	if(e.offsetX||e.layerX){
+		mx=e.offsetX==undefined?e.layerX : e.offsetX;
+		my=e.offsetY==undefined?e.layerY : e.offsetY;
+	}
 }

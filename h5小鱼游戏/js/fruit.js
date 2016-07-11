@@ -33,9 +33,9 @@ fruitObj.prototype.draw=function(){
 				var pic=this.orange;
 			}
 			if(this.l[i]<=13){
-				this.l[i]+=this.spd*deltaTime;
+				this.l[i]+=this.spd[i]*deltaTime;
 			}else{
-				this.y[i]-=this.spd*7*deltaTime;
+				this.y[i]-=this.spd[i]*7*deltaTime;
 			}
 			ctx2.drawImage(pic,this.x[i]-this.l[i]*0.5,this.y[i]-this.l[i]*0.5,this.l[i],this.l[i]);
 			if(this.y[i]<10){
@@ -57,10 +57,14 @@ fruitObj.prototype.born=function(i){
 		this.fruitType[i]="orange";
 	}
 }
+fruitObj.prototype.dead=function(i){
+	this.alive[i]=false;
+}
 function fruitMonitor(){
 	var num=0;
 	for(var i=0;i<fruit.num;i++){
-		if (fruit.alive[i])num++;
+		if (fruit.alive[i])
+			num++;
 	}
 	if(num<15){
 		sendFruit();
