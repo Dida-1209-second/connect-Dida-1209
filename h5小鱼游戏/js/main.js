@@ -14,6 +14,10 @@ var bgPic= new Image();
 
 var ane;
 var fruit;
+var wave;
+var halo;
+
+
 var mom;
 var baby;
 var babyEye=[];
@@ -99,6 +103,11 @@ function init(){
 	my=canHeight*0.5;
 	
 	data=new dataObj();
+	wave=new waveObj();
+	wave.init();
+	halo=new haloObj();
+	halo.init();
+
 }
 
 function gameloop(){
@@ -122,10 +131,15 @@ function gameloop(){
 	momBabyCollision();
 	
 	data.draw();
+	wave.draw();
+	halo.draw();
 }
 function onMouseMove(e){
-	if(e.offsetX||e.layerX){
-		mx=e.offsetX==undefined?e.layerX : e.offsetX;
-		my=e.offsetY==undefined?e.layerY : e.offsetY;
+	if(!data.gameover){
+		if(e.offsetX||e.layerX){
+			mx=e.offsetX==undefined?e.layerX : e.offsetX;
+			my=e.offsetY==undefined?e.layerY : e.offsetY;
+		}
 	}
+	
 }
