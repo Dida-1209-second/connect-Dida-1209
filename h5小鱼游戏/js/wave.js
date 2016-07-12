@@ -18,12 +18,14 @@ waveObj.prototype.draw=function(){
 			if(this.r[i]>40)this.alive[i]=false;
 			var alpha=1-this.r[i]/40;
 			//draw circle
+			ctx1.save()
 			ctx1.beginPath();
 			ctx1.lineWidth=3;
 			ctx1.arc(this.x[i],this.y[i],this.r[i],0,2*Math.PI);
 			ctx1.closePath();
 			ctx1.strokeStyle="rgba(255,255,255,"+alpha+")";
 			ctx1.stroke();
+			ctx1.restore();
 		}
 	}
 }

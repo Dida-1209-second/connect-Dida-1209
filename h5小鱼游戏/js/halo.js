@@ -31,6 +31,7 @@ haloObj.prototype.draw=function(){
 			ctx1.stroke();
 		}
 	}
+	ctx1.restore();
 }
 haloObj.prototype.born=function(x,y){
 	for(var i=0;i<this.num;i++){

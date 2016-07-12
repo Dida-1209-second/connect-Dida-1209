@@ -114,7 +114,7 @@ function init(){
 	halo=new haloObj();
 	halo.init();
 	dust =new dustObj();
-
+	dust.init();
 }
 
 function gameloop(){
@@ -140,6 +140,7 @@ function gameloop(){
 	data.draw();
 	wave.draw();
 	halo.draw();
+	dust.draw();
 }
 function onMouseMove(e){
 	if(!data.gameover){
