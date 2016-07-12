@@ -16,7 +16,8 @@ var ane;
 var fruit;
 var wave;
 var halo;
-
+var dust;
+var dustPic=[];
 
 var mom;
 var baby;
@@ -99,6 +100,11 @@ function init(){
 		momBodyBlu[i].src="src/bigSwimBlue"+i+".png";
 	}
 	
+	for(var i=0;i<7;i++){
+		dustPic[i]=new Image();
+		dustPic[i].src="src/dust"+i+".png";
+	}
+	
 	mx=canWidth*0.5;
 	my=canHeight*0.5;
 	
@@ -107,6 +113,7 @@ function init(){
 	wave.init();
 	halo=new haloObj();
 	halo.init();
+	dust =new dustObj();
 
 }
 
