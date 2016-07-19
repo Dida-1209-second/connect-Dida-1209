@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			
+#box{
+				margin: 0 auto;
+				width: 250px;
+				height: 100px;
+				border: 1px solid #000;
+				border-radius: 5px;
+				overflow: hidden;
+			}
+			ul{
+				margin: 0;
+				list-style: none;
+			
+			}
+			ul li{
+				padding-top: 1px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="con1">
+				<li>1、第1条信息滚动</li>
+				<li>2、第2条信息滚动</li>
+				<li>3、第3条信息滚动</li>
+				<li>4、第4条信息滚动</li>
+				<li>5、第5条信息滚动</li>
+				<li>6、第6条信息滚动</li>
+				<li>7、第7条信息滚动</li>
+				<li>8、第8条信息滚动</li>
+				<li>9、第9条信息滚动</li>
+			</ul>
+			<ul id="con2">			</ul>
+		</div>
+		<script type="text/javascript">
+			var area=document.getElementById("box");
+			var con1=document.getElementById("con1");
+			var con2=document.getElementById("con2");
+			con2.innerHTML=con1.innerHTML;
+			area.scrollTop=0;
+			var time=50;
+			var myScroll;
+			//debugger
+			function scrollup(){
+				if(area.scrollTop>=con1.scrollHeight){
+					area.scrollTop=0;
+				}else{
+					area.scrollTop++;
+				}
+			}
+			window.onload=function(){
+				myScroll=setInterval('scrollup()',time);
+			}
+			
+			area.onmouseover = function(){
+				 clearInterval(myScroll);
+				}
+			area.onmouseout = function(){
+				 myScroll = setInterval("scrollup()",time);
+				}
+		</script>
+	</body>
+</html>
