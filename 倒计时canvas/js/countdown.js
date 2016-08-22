@@ -141,7 +141,7 @@ function render(cxt){
 	for(var i=0;i<balls.length;i++){
 		cxt.fillStyle=balls[i].color;
 		cxt.beginPath();
-		cxt.arc(balls[i].x,balls[i].y,RADIUS,0,2*Math.PI,true);
+		cxt.arc(balls[i].x,balls[i].y,RADIUS,0,2*Math.PI,false);
 		cxt.closePath();
 		cxt.fill();
 	}

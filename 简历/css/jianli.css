@@ -1,0 +1,39 @@
+*{ margin: 0; padding: 0; } 
+body{ background-color: #eaeaea; width: 100%; } 
+.header { background-color: #3d3d3d; padding: 50px 0 0 15%; 
+		width: 85%; height: 150px; box-shadow: 0 3px #bdbdbd; } 
+.resume{ width: 50%; float: left; } 
+.name, .job{ color: #f8ffff; display: block; height: 50px; line-height: 50px; }
+.name{ font-size: 38px; font-weight: bolder; } 
+.job{ letter-spacing: 2px; } 
+.personalresume{ font-size: 50px; color: #515151; font-weight:900; width: 48%; float: left; text-align: right;} .pic{ position: relative; margin: 0 auto; display: block; width: 150px; height: 150px; 
+	border: 3px solid #222;border-radius: 50%; box-shadow: 0 0 10px 10px #3d3d3d; top: -75px; z-index: 10000; } 
+.container{ margin: 0 auto; width: 70%; overflow: hidden; } 
+.title-1{ color: #020202; font-size: 33px; line-height: 150%; font-weight: 900; } 
+.title-2{ color: #d62c47; font-size: 26px; font-weight: 700; } 
+.container > div{ width: 45%; margin-right: 5%; float: left; } 
+.container > div span{ display: block; } 
+.container > div:nth-child(1) .title-1 ,
+.container > div:nth-child(1) .title-2 , 
+.container > div:nth-child(3) .title-1 , 
+.container > div:nth-child(3) .title-2 { text-align: right; }
+#canvasbox{ width: 100%; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
